@@ -1,12 +1,11 @@
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+// import { useNavigation } from "@react-navigation/native";
+// import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useEffect, useRef } from "react";
-import { RootStackParamList } from "../../types";
+// import { RootStackParamList } from "../../types";
 import { Animated, Easing,  TouchableOpacity, View ,Text, Image} from 'react-native';
 // import { NativeWindStyleSheet } from "nativewind";
 function HomeScreen() {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  // const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
    
     const rotateAnim = useRef(new Animated.Value(0)).current;
 
@@ -15,7 +14,7 @@ function HomeScreen() {
         Animated.timing(
           rotateAnim,
           {
-            toValue:  1,
+            toValue:  3,
             duration:  2000,
             easing: Easing.linear,
             useNativeDriver: true,
@@ -32,13 +31,10 @@ function HomeScreen() {
       
     <View className="justify-center w-full  flex items-center ">
     <Animated.Image
-    className='rounded-md   shadow-lg bg-blue-300' 
         source={require('./image/home.png')}
         style={{
             width: 200,
             height: 200,
-           
-            borderColor: 'red',
             transform: [
                 {
                     rotate: rotateAnim.interpolate({
@@ -50,7 +46,7 @@ function HomeScreen() {
         }}
       />
     </View>
-      <View className="justify-center flex gap-6 items-center absolute  bottom-0 w-full">
+      {/* <View className="justify-center flex gap-6 items-center absolute  bottom-0 w-full">
        
         <TouchableOpacity
           className="p-4 bg-[#d6d3d1]   w-full "
@@ -60,7 +56,7 @@ function HomeScreen() {
             Get started
           </Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 }

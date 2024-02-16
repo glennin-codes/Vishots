@@ -30,22 +30,23 @@ function HomeScreen() {
   return (
     <View className="flex-1  flex-col justify-center bg-black h-full">
       
-    <View className="justify-center w-full text-red flex items-center ">
+    <View className="justify-center w-full  flex items-center ">
     <Animated.Image
+    className='rounded-md   shadow-lg bg-blue-300' 
         source={require('./image/home.png')}
         style={{
-          width: 200,
-          height: 200,
-          backgroundColor:"red",
-         
-          transform: [
-            {
-              rotate: rotateAnim.interpolate({
-                inputRange: [0, 360],
-                outputRange: ['0deg', '360deg'],
-              }),
-            },
-          ],
+            width: 200,
+            height: 200,
+           
+            borderColor: 'red',
+            transform: [
+                {
+                    rotate: rotateAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: ['0deg', '360deg'],
+                    }),
+                },
+            ],
         }}
       />
     </View>

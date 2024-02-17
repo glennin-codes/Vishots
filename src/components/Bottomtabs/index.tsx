@@ -8,6 +8,7 @@ import {
 import VideoDatas from '../../utils/data';
 import VideoItem from '../../screens/Video/VideoItem';
 import { WINDOW_HEIGHT ,} from '../../utils/utils';
+import ProfileScreen from '../../screens/Profile/';
 
 
 const BottomTab = createBottomTabNavigator();
@@ -58,7 +59,7 @@ export default () => {
       />
       <BottomTab.Screen
         name="Discover"
-        component={VideoScreen}
+         component={ProfileScreen}
         options={{
           tabBarIcon: ({focused}) => (
             <Image
@@ -73,7 +74,7 @@ export default () => {
       />
         <BottomTab.Screen
         name="Predict"
-        component={VideoScreen}
+         component={ProfileScreen}
         options={{
           tabBarIcon: ({focused}) => (
             <Image
@@ -88,7 +89,7 @@ export default () => {
       />
       <BottomTab.Screen
         name="UploadVideo"
-        component={VideoScreen}
+         component={ProfileScreen}
         options={{
           // tabBarLabel: () => null,
           tabBarIcon: ({focused}) => (
@@ -105,7 +106,7 @@ export default () => {
     
       <BottomTab.Screen
         name="Profile"
-        component={VideoScreen}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({focused}) => (
             <Image

@@ -1,64 +1,68 @@
-// import { useNavigation } from "@react-navigation/native";
-// import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import React, { useEffect, useRef } from "react";
-// import { RootStackParamList } from "../../types";
-import { Animated, Easing,  TouchableOpacity, View ,Text, Image} from 'react-native';
-// import { NativeWindStyleSheet } from "nativewind";
-function HomeScreen() {
-  // const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-   
-    const rotateAnim = useRef(new Animated.Value(0)).current;
+import { StatusBar } from 'expo-status-bar';
+import React, { useEffect, useRef } from 'react';
+import { Animated, View, Text } from 'react-native';
 
-    useEffect(() => {
-      Animated.loop(
-        Animated.timing(
-          rotateAnim,
-          {
-            toValue:  3,
-            duration:  2000,
-            easing: Easing.linear,
-            useNativeDriver: true,
-          }
-        )
-      ).start();
-    }, [rotateAnim]);
-// NativeWindStyleSheet.setOutput({
-//   default: "native",
-// });
+const HomeScreen: React.FC = () => {
+  const rotateAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const animation = Animated.timing(rotateAnim, {
+      toValue: 1,
+      duration: 2000,
+      useNativeDriver: false, // Set useNativeDriver to false
+    });
+
+    animation.start(({ finished }) => {
+      if (finished) {
+        rotateAnim.setValue(1); // Set the value to 1 to keep it at the center
+      }
+    });
+
+    return () => {
+      animation.stop(); // Stop the animation when the component unmounts
+    };
+  }, []);
 
   return (
-    <View className="flex-1  flex-col justify-center bg-black h-full">
-      
-    <View className="justify-center w-full  flex items-center ">
-    <Animated.Image
-        source={require('./image/home.png')}
+    <Animated.View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'black' }}>
+      <Animated.Text
         style={{
-            width: 200,
-            height: 200,
-            transform: [
-                {
-                    rotate: rotateAnim.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: ['0deg', '360deg'],
-                    }),
-                },
-            ],
+          fontSize: 40,
+          fontWeight: 'bold',
+          color: 'red',
+          transform: [
+            {
+              translateX: rotateAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [-150, 0], // Center the text horizontally
+              }),
+            },
+          ],
         }}
-      />
-    </View>
-      {/* <View className="justify-center flex gap-6 items-center absolute  bottom-0 w-full">
-       
-        <TouchableOpacity
-          className="p-4 bg-[#d6d3d1]   w-full "
-          onPress={() => navigation.navigate("VideoSection")}
-        >
-          <Text className="text-black text-center text-lg font-bold py-2">
-            Get started
-          </Text>
-        </TouchableOpacity>
-      </View> */}
-    </View>
+      >
+        VINTOSH
+      </Animated.Text>
+      <Animated.View
+        style={{
+         
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: 20,
+          transform: [
+            {
+              translateX: rotateAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [150, 0], // Center the view horizontally
+              }),
+            },
+          ],
+        }}
+      >
+        <Text style={{ fontSize: 24, fontWeight: 'bold',color:'aqua' }}>Welcome!</Text>
+      </Animated.View>
+      <StatusBar style="light" />
+    </Animated.View>
   );
-}
+};
 
 export default HomeScreen;

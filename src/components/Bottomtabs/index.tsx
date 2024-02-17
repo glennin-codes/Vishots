@@ -1,14 +1,36 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet} from 'react-native';
+import {FlatList, Image, StyleSheet} from 'react-native';
 
 import {
   createBottomTabNavigator,
   useBottomTabBarHeight,
 } from '@react-navigation/bottom-tabs';
-import VideoPlayer from '../../screens/Video';
+import VideoDatas from '../../utils/data';
+import VideoItem from '../../screens/Video/VideoItem';
+import { WINDOW_HEIGHT ,} from '../../utils/utils';
+
 
 const BottomTab = createBottomTabNavigator();
 
+ const VideoScreen=()=>{
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+  const bottomTabHeight=useBottomTabBarHeight();
+
+    return(
+        <FlatList
+        data={VideoDatas}
+        className='h-full'
+        pagingEnabled
+        renderItem={({item,index})=><VideoItem data={item} isActive={activeVideoIndex === index} />}
+        onScroll={(e)=>{
+          const index=Math.floor(e.nativeEvent.contentOffset.y / (WINDOW_HEIGHT -bottomTabHeight));
+          setActiveVideoIndex(index);
+        }}
+        />
+            
+        
+    )
+}
 
 
 export default () => {
@@ -21,7 +43,7 @@ export default () => {
       }}>
       <BottomTab.Screen
         name="Home"
-        component={VideoPlayer}
+        component={VideoScreen}
         options={{
           tabBarIcon: ({focused}) => (
             <Image
@@ -36,7 +58,7 @@ export default () => {
       />
       <BottomTab.Screen
         name="Discover"
-        component={VideoPlayer}
+        component={VideoScreen}
         options={{
           tabBarIcon: ({focused}) => (
             <Image
@@ -51,7 +73,7 @@ export default () => {
       />
         <BottomTab.Screen
         name="Predict"
-        component={VideoPlayer}
+        component={VideoScreen}
         options={{
           tabBarIcon: ({focused}) => (
             <Image
@@ -66,7 +88,7 @@ export default () => {
       />
       <BottomTab.Screen
         name="UploadVideo"
-        component={VideoPlayer}
+        component={VideoScreen}
         options={{
           // tabBarLabel: () => null,
           tabBarIcon: ({focused}) => (
@@ -83,7 +105,7 @@ export default () => {
     
       <BottomTab.Screen
         name="Profile"
-        component={VideoPlayer}
+        component={VideoScreen}
         options={{
           tabBarIcon: ({focused}) => (
             <Image

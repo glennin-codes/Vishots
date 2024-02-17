@@ -4,7 +4,7 @@ import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./src/screens/Home/";
-import VideoDisplayPage from "./src/screens/Video";
+import VideoDisplayPage from "./src/screens/Video/VideoItem";
 import TabNavigator  from './src/components/Bottomtabs'
 export default function App(): React.JSX.Element {
   const Stack = createNativeStackNavigator();

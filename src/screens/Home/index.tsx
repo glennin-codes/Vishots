@@ -8,7 +8,7 @@ const HomeScreen: React.FC = () => {
   useEffect(() => {
     const animation = Animated.timing(rotateAnim, {
       toValue: 1,
-      duration: 2000,
+      duration:2500,
       useNativeDriver: false, // Set useNativeDriver to false
     });
 
@@ -47,7 +47,7 @@ const HomeScreen: React.FC = () => {
          
           justifyContent: 'center',
           alignItems: 'center',
-          marginTop: 20,
+          marginTop: 5,
           transform: [
             {
               translateX: rotateAnim.interpolate({
@@ -58,7 +58,7 @@ const HomeScreen: React.FC = () => {
           ],
         }}
       >
-        <Text style={{ fontSize: 24, fontWeight: 'bold',color:'aqua' }}>Welcome!</Text>
+        <Text style={{ fontSize: 30, fontWeight: 'bold',color:'aqua' }}>Welcome!</Text>
       </Animated.View>
       <StatusBar style="light" />
     </Animated.View>

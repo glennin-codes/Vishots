@@ -12,8 +12,7 @@ import {
   Easing,
   StatusBar,
 } from "react-native";
-// import { Video,ResizeMode } from 'expo-av';
-import { VideoSrc } from "../../types";
+
 import { WINDOW_HEIGHT, WINDOW_WIDTH } from "../../utils/utils";
 import { Video, ResizeMode } from "expo-av";
 import { VideoModel } from "../../utils/data";

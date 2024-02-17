@@ -14,7 +14,7 @@ const [isReady, setIsReady] = React.useState(false);
 React.useEffect(() => {
   setTimeout(() => {
     setIsReady(true);
-  }, 5000);
+  }, 3000);
 },
  []);
   if (!isReady) {
